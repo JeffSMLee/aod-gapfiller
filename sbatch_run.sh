@@ -6,7 +6,7 @@
 #SBATCH -e slurm-%j.err-%N
 #SBATCH --job-name=gap-filler
 #SBATCH --nodes=1
-#SBATCH --ntasks=6
+#SBATCH --ntasks=4
 #SBATCH --gpus-per-task=1
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:3090:4
@@ -33,7 +33,7 @@ export LOGLEVEL=INFO
 
 srun torchrun \
 --nnodes 1 \
---nproc_per_node 6 \
+--nproc_per_node 4 \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29501 \
