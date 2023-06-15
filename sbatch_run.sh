@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#SBATCH --account=notchpeak-gpu
 #SBATCH --partition=notchpeak-gpu
+#SBATCH --account=notchpeak-gpu
 #SBATCH -o slurm-%j.out-%N
 #SBATCH -e slurm-%j.err-%N
 #SBATCH --job-name=gap-filler
