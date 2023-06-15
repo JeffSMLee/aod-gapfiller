@@ -7,10 +7,9 @@
 #SBATCH --job-name=gap-filler
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
-#SBATCH --gpus-per-task=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=6
 #SBATCH --gres=gpu:3090:4
-#SBATCH --mem=0
+#SBATCH --mem=128G
 #SBATCH --time=48:00:00
 
 setenv SCRDIR /scratch/local/$USER/$SLURM_JOB_ID
@@ -32,6 +31,7 @@ echo Node IP: $head_node_ip
 export LOGLEVEL=INFO
 
 srun torchrun \
+--standalone
 --nnodes 1 \
 --nproc_per_node 4 \
 --rdzv_id $RANDOM \
