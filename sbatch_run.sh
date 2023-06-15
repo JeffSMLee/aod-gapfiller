@@ -36,6 +36,6 @@ srun torchrun \
 --rdzv-id=$RANDOM \
 --rdzv-backend=c10d \
 --rdzv-endpoint=$head_node_ip:29500 \
-/uufs/chpc.utah.edu/common/home/u6049013/gapfiller/main.py
+/uufs/chpc.utah.edu/common/home/u6049013/aod-gapfiller/main.py
 
 cp -r $SCRDIR/* $WORKDIR/.
