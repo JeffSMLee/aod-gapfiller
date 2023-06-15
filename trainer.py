@@ -169,6 +169,7 @@ def ddp_setup():
 
 
 def main(total_epochs: int, save_every: int, snapshot_path: str = "snapshot.pt"):
+    torch.cuda.empty_cache()
     ddp_setup()
     train_set, val_set, model, train_loss, val_loss, optimizer = load_train_objs()
     train_data = prepare_dataloader(train_set)
