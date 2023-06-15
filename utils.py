@@ -31,7 +31,7 @@ class WeightedMSELoss(Metric):
         self.add_state("n_valid", default=torch.tensor(0.), dist_reduce_fx="sum")
 
     def update(self, output: torch.Tensor, target: torch.Tensor, weights: torch.Tensor):
-        assert output.size == target.shape == weights.shape
+        assert output.shape == target.shape == weights.shape
         self.total += (weights * ((target - output) ** 2)).sum()
         self.n_valid += (weights != 0).sum()
 
