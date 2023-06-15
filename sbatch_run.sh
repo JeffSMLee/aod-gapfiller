@@ -34,9 +34,10 @@ srun torchrun \
 --standalone \
 --nnodes=1 \
 --nproc-per-node=4 \
---rdzv-id=$RANDOM \
---rdzv-backend=c10d \
---rdzv-endpoint=$head_node_ip:29500 \
 /uufs/chpc.utah.edu/common/home/u6049013/gapfiller/main.py
+#--rdzv-id=$RANDOM \
+#--rdzv-backend=c10d \
+#--rdzv-endpoint=$head_node_ip:29500 \
+
 
 cp -r $SCRDIR/* $WORKDIR/.
