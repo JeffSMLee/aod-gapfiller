@@ -29,10 +29,8 @@ class Trainer:
         self.train_data = train_data
         self.val_data = val_data
         self.optimizer = optimizer
-        self.train_loss = train_loss
-        self.val_loss = val_loss
-        self.train_loss.to(self.local_rank)
-        self.val_loss.to(self.local_rank)
+        self.train_loss = train_loss.to(self.local_rank)
+        self.val_loss = val_loss.to(self.local_rank)
         self.train_losses = []
         self.val_losses = []
         self.save_every = save_every
