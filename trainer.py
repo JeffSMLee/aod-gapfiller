@@ -76,7 +76,7 @@ class Trainer:
         for step, (x, y, weights, _, _, _) in enumerate(self.val_data):
             self.__run_batch(x.float().to(self.local_rank),
                              y.float().to(self.local_rank),
-                             weights.float().to_self.local_rank)
+                             weights.float().to(self.local_rank))
 
         # save losses and update training curve plot
         if self.global_rank == 0:
