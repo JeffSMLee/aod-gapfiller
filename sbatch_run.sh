@@ -14,7 +14,7 @@
 
 setenv SCRDIR /scratch/local/$USER/$SLURM_JOB_ID
 setenv WORKDIR $HOME/output
-cd $SCRDIR
+cd $SCRDIR || exit
 
 module load cuda/11.8.0
 module use $HOME/MyModules
@@ -31,12 +31,12 @@ echo Node IP: $head_node_ip
 export LOGLEVEL=INFO
 
 srun torchrun \
---standalone
---nnodes 1 \
---nproc_per_node 4 \
---rdzv_id $RANDOM \
---rdzv_backend c10d \
---rdzv_endpoint $head_node_ip:29501 \
+--standalone \
+--nnodes=1 \
+--nproc-per-node=4 \
+--rdzv-id=$RANDOM \
+--rdzv-backend=c10d \
+--rdzv-endpoint=$head_node_ip:29500 \
 /uufs/chpc.utah.edu/common/home/u6049013/gapfiller/main.py
 
 cp -r $SCRDIR/* $WORKDIR/.
