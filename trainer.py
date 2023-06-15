@@ -59,7 +59,6 @@ class Trainer:
             loss = self.train_loss(y_hat, y, weights)
             loss.backward()
             self.optimizer.step()
-            return loss
         self.val_loss.update(y_hat, y, weights)
 
     def __run_epoch(self, epoch):

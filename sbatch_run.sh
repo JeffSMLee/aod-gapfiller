@@ -9,9 +9,9 @@
 #SBATCH --ntasks=6
 #SBATCH --gpus-per-task=1
 #SBATCH --cpus-per-task=4
-#SBATCH --gres=gpu:3090:6
+#SBATCH --gres=gpu:3090:4
 #SBATCH --mem=0
-#SBATCH --time=72:00:00
+#SBATCH --time=48:00:00
 
 setenv SCRDIR /scratch/local/$USER/$SLURM_JOB_ID
 setenv WORKDIR $HOME/output
