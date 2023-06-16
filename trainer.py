@@ -50,14 +50,14 @@ class Trainer:
         print(f"Resuming training from snapshot at epoch {self.epochs_run}")
 
     def __run_batch(self, x, y, weights, train=True):
-        y_hat = self.model(x)
-        y[y == FILL_VALUE] = y_hat[y == FILL_VALUE]
+        yhat = self.model(x)
+        y[y == FILL_VALUE] = yhat[y == FILL_VALUE]
         if train:
             self.optimizer.zero_grad()
-            loss = self.train_loss(y_hat, y, weights)
+            loss = self.train_loss(yhat=yhat, y=y, weights=weights, preds=yhat, target=y)
             loss.backward()
             self.optimizer.step()
-        self.val_loss.update(y_hat, y, weights)
+        self.val_loss.update(yhat=yhat, y=y, weights=weights, preds=yhat, target=y)
 
     def __run_epoch(self, epoch):
         b_sz = len(next(iter(self.train_data))[0])
@@ -74,7 +74,8 @@ class Trainer:
         for step, (x, y, weights, _, _, _) in enumerate(self.val_data):
             self.__run_batch(x.float().to(self.local_rank),
                              y.float().to(self.local_rank),
-                             weights.float().to(self.local_rank))
+                             weights.float().to(self.local_rank),
+                             train=False)
 
         # save losses and update training curve plot
         if self.global_rank == 0:
