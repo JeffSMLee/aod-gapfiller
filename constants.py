@@ -24,7 +24,7 @@ ALPHA = 1.0     # loss function weighting parameter, i.e. l = alpha * l_pixel + 
 BETA = 1e-3
 LR = 1e-2
 WEIGHT_DECAY = 1e-5
-BATCH_SIZE = 24
+BATCH_SIZE = 16
 DATASET_SPLIT = 0.9
 SAVE_EVERY = 1
 TOTAL_EPOCHS = 1
