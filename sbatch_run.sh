@@ -6,9 +6,9 @@
 #SBATCH -e slurm-%j.err-%N
 #SBATCH --job-name=gap-filler
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --ntasks=4
 #SBATCH --cpus-per-task=6
-#SBATCH --gres=gpu:3090:1
+#SBATCH --gres=gpu:3090:4
 #SBATCH --mem=128G
 #SBATCH --time=48:00:00
 
@@ -33,7 +33,7 @@ export LOGLEVEL=INFO
 srun torchrun \
 --standalone \
 --nnodes=1 \
---nproc-per-node=1 \
+--nproc-per-node=4 \
 /uufs/chpc.utah.edu/common/home/u6049013/aod-gapfiller/main.py
 #--rdzv-id=$RANDOM \
 #--rdzv-backend=c10d \
